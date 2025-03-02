@@ -57,24 +57,8 @@ use yii\helpers\Url;
                             $a = "nav-link";
                         }
                         ?>
-                        <li class="<?= $li; ?>"><a class="<?= $a; ?>" href="<?php echo Url::toRoute(['/inicio/index']); ?>"><i class="nav-icon far fa-circle text-yellow"></i>
-                                <p>Ejemplo de echo</p>
-                            </a></li>
-                        <!-------------------------------------------------->
-
-                         <!-------------------------------------------------->
-                    <?php if (Yii::$app->controller->id == 'inicio' && in_array(\Yii::$app->controller->action->id, ['suma'])) {
-                            $li = "nav-item active";
-                            $a = "nav-link active";
-                        } else {
-                            $li = "nav-item";
-                            $a = "nav-link";
-                        }
-                        ?>
-                        <li class="<?= $li; ?>"><a class="<?= $a; ?>" href="<?php echo Url::toRoute(['/inicio/suma']); ?>"><i class="nav-icon far fa-circle text-red"></i>
-                                <p>Ejemplo de suma</p>
-                            </a></li>
-                        <!-------------------------------------------------->
+                       
+                    
                          <!-------------------------------------------------->
                     <?php if (Yii::$app->controller->id == 'tasks' && in_array(\Yii::$app->controller->action->id, ['index','view','create','update'])) {
                             $li = "nav-item active";
@@ -88,7 +72,7 @@ use yii\helpers\Url;
                                 <p>Tareas</p>
                             </a></li>
                         <!-------------------------------------------------->
-                         <!----------------Calculadora---------------------------------->
+                      
 
                         <?php if (Yii::$app->controller->id == 'calculadora' && in_array(\Yii::$app->controller->action->id, ['index'])) {
                             $li = "nav-item active";
@@ -101,7 +85,7 @@ use yii\helpers\Url;
                         <li class="<?= $li; ?>"><a class="<?= $a; ?>" href="<?php echo Url::toRoute(['/calculadora/index']); ?>"><i class="nav-icon far fa-circle text-pink"></i>
                                 <p>Calculadora</p>
                             </a></li>
-                        <!-------------------------------------------------->
+                        
                     </ul>
                 </li>
                  <!------- END Inicio------->

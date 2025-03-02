@@ -1,56 +1,52 @@
 <?php
-/* @var $this yii\web\View */
-/* @var $model app\models\CalculadoraModels */
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
-$this->title = 'Calculadora'; // Título de la página
+$this->title = 'Calculadora Mejorada';
 ?>
 
-<div class="content">
-    <div class="container-fluid">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header bg-primary text-white">
-                        <h3 class="card-title">Calculadora</h3><!-- Encabezado del formulario -->
+<div class="container mt-5">
+    <h1 class="text-center"><?= Html::encode($this->title) ?></h1>
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header text-white bg-dark">
+                    <h4>Operaciones Matemáticas</h4>
+                </div>
+                <div class="card-body">
+                    <?php $form = ActiveForm::begin(['id' => 'calculadora-form']); ?>
+
+                    <?= $form->field($model, 'numero1')->textInput(['placeholder' => 'Ingrese el primer número'])->label('Número 1') ?>
+
+                    <?= $form->field($model, 'numero2')->textInput(['placeholder' => 'Ingrese el segundo número'])->label('Número 2') ?>
+
+                    <?= $form->field($model, 'operacion')->radioList([
+    '+' => ' Suma  ',
+    '-' => ' Resta  ',
+    '*' => ' Multiplicación  ',
+    '/' => ' División  ',
+], [
+    'itemOptions' => [
+        'class' => 'form-check-input', 
+        'style' => 'margin-bottom: 10px; margin-right: 10px;'
+    ],
+    'separator' => '<br>', 
+])->label('Operación') ?>
+
+
+                    <div class="form-group" style="margin-top: 60px;">
+                        <?= Html::submitButton('Calcular', ['class' => 'btn btn-success btn-block']) ?>
                     </div>
-                    <div class="card-body">
-                        <?php $form = ActiveForm::begin([
-                            'id' => 'calculadora-form',
-                            'options' => ['class' => 'form-horizontal'],// Clase CSS para el formulario
-                        ]); ?>
 
-                        <div class="form-group">
-                            <?= $form->field($model, 'numero1')->textInput(['class' => 'form-control', 'placeholder' => 'Número 1'])->label(false) ?>
+                    <?php ActiveForm::end(); ?>
+
+                    <?php if ($model->resultado !== null): ?>
+                        <div class="alert alert-info text-center">
+                            <strong>Resultado:</strong> <?= Html::encode($model->resultado) ?>
                         </div>
-
-                        <div class="form-group">
-                            <?= $form->field($model, 'numero2')->textInput(['class' => 'form-control', 'placeholder' => 'Número 2'])->label(false) ?>
-                        </div>
-
-                        <div class="form-group">
-                            <?= $form->field($model, 'operacion')->dropDownList([// genera un menú desplegable
-                                'suma' => 'Suma',
-                                'resta' => 'Resta',
-                                'multiplicacion' => 'Multiplicación',
-                                'division' => 'División',
-                            ], ['class' => 'form-control'])->label(false) ?>
-                        </div>
-
-                        <div class="form-group">
-                            <?= Html::submitButton('Calcular', ['class' => 'btn btn-primary btn-block']) ?>
-                        </div>
-
-                        <?php ActiveForm::end(); ?>
-
-                        <?php if (isset($model->resultado)): // Verifica si existe un resultado ?>
-                            <div class="alert alert-success">
-                                <strong>Resultado:</strong> <?= Html::encode($model->resultado) // Muestra el resultado ?>
-                            </div>
-                        <?php endif; ?>
-                    </div>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
